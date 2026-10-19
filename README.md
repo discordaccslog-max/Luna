@@ -10,26 +10,25 @@ dependencies, no `npm install`. Vercel serves the files exactly as they are in t
 
 ---
 
-## 1. Connecting Whop (the only thing left to do)
+## 1. Whop checkout
 
-Checkout links live in **one file**: [`js/config.js`](js/config.js).
+Live and wired up. Checkout links live in **one file**: [`js/config.js`](js/config.js), and
+every buy button on every page reads from it.
 
 ```js
 window.STARFN_CHECKOUT = {
-  full: "",   // Fortnite Competitive Coaching - PDF        ($49.99)
-  lite: ""    // Fortnite Competitive Coaching - PDF, Lite  ($29.99)
+  full: "https://whop.com/checkout/plan_Eo9D3wFTDajti",  // PDF            ($49.99)
+  lite: "https://whop.com/checkout/plan_onKWCD9fTla35"   // PDF Lite       ($29.99)
 };
 ```
 
-1. In your Whop dashboard, copy the public checkout link for each product
-   (usually `https://whop.com/checkout/plan_XXXXXXXX`).
-2. Paste each one between the quotes.
-3. Commit and push. Vercel redeploys automatically, usually within a minute.
+To change a link: copy the product's public checkout link from your Whop dashboard
+(`https://whop.com/checkout/plan_XXXXXXXX`), paste it between the quotes, commit and push.
+Vercel redeploys automatically, usually within a minute.
 
-**Until a real link is pasted in**, every buy button on the site automatically becomes a
-"Checkout opening soon - contact us" button pointing at `/contact`. No customer can ever
-land on a dead or placeholder checkout page. Nothing else needs changing when the links
-are ready.
+**Safety net:** if a value is ever left empty or is not an `https://` link, that product's
+buttons automatically become a "Checkout opening soon - contact us" button pointing at
+`/contact`, rather than sending a customer to a dead checkout.
 
 ---
 

@@ -1,23 +1,24 @@
 /* ---------------------------------------------------------------------------
    StarFN Competitive & Kovaaks Coaching — checkout configuration
    ---------------------------------------------------------------------------
-   THIS IS THE ONLY FILE YOU NEED TO EDIT WHEN YOUR WHOP LINKS ARE READY.
+   This is the only file to edit if a Whop checkout link ever changes. Every
+   buy button on every page reads its link from here.
 
-   1. Open your Whop dashboard and copy the public checkout link for each
-      product (it usually looks like https://whop.com/checkout/plan_XXXXXXXX ).
-   2. Paste each one between the quotes below.
-   3. Save, commit, push — Vercel redeploys automatically.
+   To swap a link: copy the product's public checkout link from your Whop
+   dashboard (it looks like https://whop.com/checkout/plan_XXXXXXXX), paste it
+   between the quotes below, then commit and push — Vercel redeploys
+   automatically, usually within a minute.
 
-   Until a real link is pasted in, every "Get the ... Playbook" button on the
-   site automatically turns into a "Checkout opening soon" button pointing at
-   the contact page, so no customer can ever land on a dead or placeholder
-   checkout page.
+   Safety net: if a value below is ever left empty or is not an https:// link,
+   that product's buttons automatically turn into a "Checkout opening soon"
+   button pointing at the contact page, rather than sending a customer to a
+   dead checkout.
 --------------------------------------------------------------------------- */
 
 window.STARFN_CHECKOUT = {
   // Fortnite Competitive Coaching — PDF (Full Playbook, $49.99 USD)
-  full: "",
+  full: "https://whop.com/checkout/plan_Eo9D3wFTDajti",
 
   // Fortnite Competitive Coaching — PDF, Lite Version (Lite Playbook, $29.99 USD)
-  lite: ""
+  lite: "https://whop.com/checkout/plan_onKWCD9fTla35"
 };
