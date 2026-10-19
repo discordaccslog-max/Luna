@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /404
+
+Sitemap: https://luna-zeta-ten.vercel.app/sitemap.xml

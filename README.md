@@ -1,96 +1,128 @@
-# My Store — Static Website
+# StarFN Competitive & Kovaaks Coaching
 
-Replicated from Shopify Horizon theme. Pure HTML/CSS/JS — no framework needed.
+The public website for **StarFN Competitive & Kovaaks Coaching**, selling two downloadable
+Fortnite competitive coaching PDFs.
 
-## File Structure
+Live site: <https://luna-zeta-ten.vercel.app>
 
-```
-website/
-├── index.html              ← Homepage
-├── vercel.json             ← Vercel deployment config
-├── css/
-│   └── styles.css          ← All styles (replicated from Shopify Horizon base.css)
-├── js/
-│   └── main.js             ← Cart, search, mobile nav, interactions
-└── pages/
-    ├── collection.html     ← All Products / Collection page
-    ├── product.html        ← Product detail page
-    ├── cart.html           ← Cart page
-    ├── about.html          ← About page
-    ├── contact.html        ← Contact page
-    └── 404.html            ← 404 error page
-```
-
-## Deploying to Vercel (Free)
-
-### Option A — Drag & Drop (Easiest)
-1. Go to [vercel.com](https://vercel.com) and sign up / log in
-2. Click **"Add New Project"** → **"Upload"**
-3. Drag the entire `website/` folder into the upload area
-4. Click **Deploy** — done! You'll get a free `.vercel.app` URL instantly
-
-### Option B — Via GitHub (Recommended for updates)
-1. Create a free account at [github.com](https://github.com)
-2. Create a new repository (e.g. `my-store`)
-3. Upload all files from the `website/` folder to the repo
-4. Go to [vercel.com](https://vercel.com) → **"Add New Project"**
-5. Connect your GitHub account and select your repo
-6. Click **Deploy** — Vercel auto-deploys on every git push
-
-### Connecting a Custom Domain
-1. In your Vercel project → **Settings → Domains**
-2. Add your domain (e.g. `mystore.com`)
-3. Follow the DNS instructions to point your domain to Vercel
-4. SSL certificate is applied automatically (free)
+Plain static HTML, CSS and a few lines of JavaScript. No framework, no build step, no
+dependencies, no `npm install`. Vercel serves the files exactly as they are in this repo.
 
 ---
 
-## Customizing Your Store
+## 1. Connecting Whop (the only thing left to do)
 
-### Change Store Name
-Search and replace **"My Store"** in all HTML files with your actual store name.
+Checkout links live in **one file**: [`js/config.js`](js/config.js).
 
-### Add Your Logo
-Replace the `<span class="header-logo-text">My Store</span>` in each HTML file with:
-```html
-<img src="../assets/logo.png" alt="Your Store Name" style="height:36px;width:auto;">
+```js
+window.STARFN_CHECKOUT = {
+  full: "",   // Fortnite Competitive Coaching - PDF        ($49.99)
+  lite: ""    // Fortnite Competitive Coaching - PDF, Lite  ($29.99)
+};
 ```
-Place your logo image in the `assets/` folder.
 
-### Update Products
-In `index.html` and `pages/collection.html`, edit the product cards to reflect your real products:
-- Update the product names and prices
-- Replace the placeholder SVG with real product images:
-  ```html
-  <img src="../assets/product-image.jpg" alt="Product Name" loading="lazy">
-  ```
+1. In your Whop dashboard, copy the public checkout link for each product
+   (usually `https://whop.com/checkout/plan_XXXXXXXX`).
+2. Paste each one between the quotes.
+3. Commit and push. Vercel redeploys automatically, usually within a minute.
 
-### Update Colors
-In `css/styles.css`, edit the `:root` variables at the top to change the color scheme.
-
-### Add Announcement Bar Text
-Edit the text inside `.announcement-bar` in each HTML file.
-
-### Update Footer Links
-- Replace `hello@mystore.com` with your email
-- Update the social media URLs (Facebook, Instagram, TikTok, YouTube)
-- Update the copyright year/name
+**Until a real link is pasted in**, every buy button on the site automatically becomes a
+"Checkout opening soon - contact us" button pointing at `/contact`. No customer can ever
+land on a dead or placeholder checkout page. Nothing else needs changing when the links
+are ready.
 
 ---
 
-## Adding Real Checkout
+## 2. Pages
 
-Since this is a static site, checkout requires an external service:
+| URL | File | Purpose |
+| --- | --- | --- |
+| `/` | `index.html` | Home - both products, how it works, expectations |
+| `/products` | `products.html` | Side-by-side comparison of both editions |
+| `/coaching-pdf-full` | `coaching-pdf-full.html` | Full edition, $49.99, 10+ pages |
+| `/coaching-pdf-lite` | `coaching-pdf-lite.html` | Lite edition, $29.99, 5 pages |
+| `/faq` | `faq.html` | 16 questions on delivery, refunds, licensing, age |
+| `/about` | `about.html` | Business background and details |
+| `/contact` | `contact.html` | Support email, response times, business details |
+| `/terms` | `terms.html` | Terms of Service (21 clauses) |
+| `/privacy` | `privacy.html` | Privacy Policy (GDPR / UK GDPR / CCPA / CPRA) |
+| `/refund-policy` | `refund-policy.html` | Refund Policy for instant digital goods |
+| `/delivery` | `delivery.html` | Digital delivery policy |
+| `/cookies` | `cookies.html` | Cookie Notice (this site sets none) |
+| `/disclaimer` | `disclaimer.html` | Non-affiliation and no-results-guarantee |
+| `/ip-policy` | `ip-policy.html` | Copyright, licence and DMCA procedure |
+| `/accessibility` | `accessibility.html` | WCAG 2.1 AA statement |
+| - | `404.html` | Not-found page (served automatically by Vercel) |
 
-- **Shopify Buy Button** — embed Shopify's buy button to keep using Shopify's checkout
-- **Stripe** — integrate Stripe Checkout for payments
-- **Snipcart** — drop-in shopping cart with minimal setup
-- **Gumroad** — great for digital products
+`vercel.json` sets `cleanUrls: true`, so `/terms` serves `terms.html`. Link without the
+`.html` extension.
 
 ---
 
-## Notes
+## 3. Things you should check and edit
 
-- Cart is stored in `localStorage` — persists across page refreshes
-- All pages are fully mobile-responsive
-- No dependencies — pure HTML/CSS/JavaScript
+- **Product contents.** The chapter lists on `coaching-pdf-full.html` and
+  `coaching-pdf-lite.html` must match the PDFs customers actually receive. Both files carry
+  an `EDIT ME` comment right above that block. Describing content you do not deliver is
+  both a consumer-law problem and a payment-provider problem, so adjust the wording to
+  match your real files.
+- **Support email.** `starfnshop@gmail.com` is used site-wide as the public support
+  address. To change it, find and replace that string across the `.html` files.
+- **Governing law.** Clause 20 of the Terms refers to "the country in which StarFN
+  Competitive & Kovaaks Coaching is established". Naming your actual country there is
+  stronger - replace that phrase once you decide what to state publicly.
+- **Business identity.** Some jurisdictions require a registered trading address or
+  company number on a commercial website. If that applies to you, add it to the business
+  details tables on `/about` and `/contact`.
+
+---
+
+## 4. Editing
+
+Everything is hand-editable HTML. The header and footer are repeated in each file, so a
+site-wide nav or footer change means editing every `.html` file (or a find-and-replace).
+
+- Colours and spacing: the `:root` block at the top of `css/styles.css`.
+- Prices: they appear in the product pages, the comparison table, the footer and the FAQ.
+  Search for `49.99` and `29.99`.
+- Behaviour: `js/main.js` only does three things - the footer year, the mobile menu, and
+  wiring the Whop links from `config.js`.
+
+---
+
+## 5. Compliance notes
+
+Deliberate choices, not oversights:
+
+- **No cookies, no analytics, no third-party requests.** No Google Fonts, no tag manager,
+  no pixels. The site uses system fonts. This is why there is no cookie banner and why the
+  Privacy Policy can state plainly that the site collects nothing.
+- **Strict Content-Security-Policy** in `vercel.json` (`default-src 'self'`), plus HSTS,
+  `X-Content-Type-Options`, `X-Frame-Options`, `Referrer-Policy` and `Permissions-Policy`.
+  Because the CSP forbids inline scripts, do not add inline `<script>` blocks - put the
+  code in `js/` instead.
+- **Digital-goods consent wording** sits next to every buy button: the customer requests
+  immediate delivery and acknowledges losing the 14-day withdrawal right. This is what
+  makes a no-change-of-mind refund policy lawful in the UK and EU.
+- **No results claims anywhere.** No guaranteed placements, qualifications or earnings.
+- **Non-affiliation with Epic Games and KovaaK's** is stated in the footer of every page
+  and in full on `/disclaimer`.
+
+---
+
+## 6. Local preview
+
+No build step. Open `index.html` directly, or serve the folder so that clean URLs behave
+like production:
+
+```bash
+npx serve .
+```
+
+---
+
+## 7. Deploying
+
+Vercel is already connected to this repository and deploys `main` automatically. Pushing a
+commit is the whole deployment process. There is no build command and no output directory
+to configure - it is a static site served from the repository root.
